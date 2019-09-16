@@ -2,14 +2,9 @@ package com.genesis;
 
 import java.util.List;
 
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.Metamodel;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,10 +15,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
-import oracle.net.aso.s;
-
-
-public class MainTask1_7 {
+public class MainTask1_8 {
 	
 	@SuppressWarnings({ "unchecked", "deprecation", "rawtypes" })
 	public static void main(String[] args) {
@@ -114,7 +106,7 @@ public class MainTask1_7 {
 		}
 		
 		//******************************************Task7******************************************************
-		System.out.println("@@@@@@@@@HQL DML");
+		System.out.println("@@@@@@@@@HQL Parameter");
 		hql=session.createQuery("update Laptop set price=:p where code=:c");
 		hql.setParameter("p", 45621f);
 		hql.setParameter("c", 1);
@@ -128,7 +120,6 @@ public class MainTask1_7 {
 			System.out.println(e);
 		}
 		
-		System.out.println("@@@@@@@@@HQL DML");
 		hql=session.createQuery("update Employee set ename=? where eno=?");
 		hql.setParameter(0, "Vishnu");
 		hql.setParameter(1, 2);
@@ -143,29 +134,16 @@ public class MainTask1_7 {
 			System.out.println(e);
 		}
 		
-//		CriteriaBuilder cb=session.getCriteriaBuilder();
-//		CriteriaQuery<Employee> criteriaQuery = cb.createQuery(Employee.class);
-//        Root<Employee> root=criteriaQuery.from(Employee.class);
-////      criteriaQuery.select(root).where(cb.ge(root.<Integer>get("esal"), 500));
-//        Metamodel metamodel = session.getMetamodel();
-//        EntityType<Employee> pClass = metamodel.entity(Employee.class);
-//        
-////        criteriaQuery.select();
-//		System.out.println("Data Stored");
-////		
-////		List<Object[]> l1=cr.list();
-////		for(Object[] obj:l1) {
-////			for(Object val:obj)
-////				System.out.println(val);
-////		}
-//		TypedQuery<Employee> query = session.createQuery(criteriaQuery);
-//		List<Employee> l11=query.getResultList();  
-////		System.out.println(l1);
-//		for(Employee e:l11) {
-//			System.out.println(e);
-//		}
+		//******************************************Task8******************************************************
+		System.out.println("@@@@@@@@@HQL DML");
 		
-		session.close();
+		SQLQuery sql=session.createSQLQuery("select * from Laptop");
+		//
+		sql.addEntity(Laptop.class);
+		List<Laptop> sll=sql.list();
+		for(Laptop e:ll) {
+			System.out.println(e);
+		}
 	}
 
 }

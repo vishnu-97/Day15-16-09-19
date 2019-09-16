@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class MainTask8 {
+public class MainTask9 {
 
 	public static void main(String[] args) {
 		SessionFactory sf=Util.getSF();
